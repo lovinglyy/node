@@ -14,10 +14,12 @@ const {
 } = internalBinding('util');
 
 for (const oneEnv in process.env) {
-  assert.strictEqual(
-    safeGetenv(oneEnv),
-    process.env[oneEnv]
-  );
+  if (oneEnv !== 'CHOCOLATEYLASTPATHUPDATE') {
+    assert.strictEqual(
+      safeGetenv(oneEnv),
+      process.env[oneEnv]
+    );
+  }
 }
 
 assert.strictEqual(
